@@ -1,7 +1,13 @@
 from django.contrib import admin
-from .models import create_user_profile, City, Profile
+from .models import Profile , City
 
-# Register your models here.
-#admin.site.register(create_user_profile)
-admin.site.register(City)
-admin.site.register(Profile)
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'city', 'phone_number', 'image']
+
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(City, CityAdmin)
