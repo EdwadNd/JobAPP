@@ -38,3 +38,5 @@ Prerequisites
 Database
 
 We will Practice working with both MYSQL or POSTGRESQL
+
+console, where u create sql
