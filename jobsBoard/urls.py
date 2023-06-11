@@ -16,24 +16,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf import settings
+
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('jobsApp.urls')),
+
+    
     # always the accounts before the admin because the admin will overwrite the accounts if its not in the beginning
-    path('accounts/', include('django.contrib.auth.urls')), # a build in feature from django
-    path('accounts/', include('accounts.urls',namespace='accounts')),
-    path('admin/', admin.site.urls), 
-    path('jobs/', include('job.urls', namespace='jobs')), # path('path_name/', include('app_name.urls'))
-    path('contact-us/', include('contact.urls',namespace='contact')),
+    #path('accounts/', include('django.contrib.auth.urls')), # a build in feature from django
+    #path('accounts/', include('accounts.urls',namespace='accounts')),
+    #path('admin/', admin.site.urls), 
+    #path('jobApp/', include('jobApp.urls', namespace='jobApps')), # path('path_name/', include('app_name.urls'))
+    #path('contact-us/', include('contact.urls',namespace='contact')),
     
     # Django Rest Framework
-    path('api-auth/', include('rest_framework.urls'))
+    #path('api-auth/', include('rest_framework.urls'))
     ]
 
 
 # for adding the static files in the frontend to the settings
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 # for adding the static files (images, ...) by the user to the settings
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

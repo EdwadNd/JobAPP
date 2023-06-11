@@ -25,27 +25,29 @@ from .Filters import JobFilter
 
 
 # Will Retrieve all jobs 
-def job_list(request):
-    job_list = Job.objects.all()
+def job_list(request): 
+    jobs = Job.objects.all()
+    context = {"jobs": jobs,
+    }
     
     # Filters
-    myfilter = JobFilter(request.GET, queryset=job_list)
-    job_list = myfilter.qs # qs == queryset
+    myfilter = JobFilter(request.GET, queryset=jobs)
+    jobs = myfilter.qs # qs == queryset
     
     # Pagination
-    paginator = Paginator(job_list, 5) # Show 3 contacts per page.
+    paginator = Paginator(jobs, 5) # Show 3 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
     context = {'jobs': page_obj, 'myfilter' : myfilter} # templates name
-    return render(request, 'job/job_list.html', context)
+    return render(request, 'job_list.html', context)
 
 
-# Will Retrieve one jobs details
 def job_detail(request, slug):
     job_detail = Job.objects.get(slug=slug) # will retrieve on job
     # job_detail = Job.object.filter() # will retrieve on job from a list according to some filtration
-    
+
+
     # Django bootstrap:  https://django-bootstrap4.readthedocs.io/en/latest/quickstart.html
     if request.method=='POST':
         form = ApplyForm(request.POST, request.FILES)
@@ -59,17 +61,13 @@ def job_detail(request, slug):
     else:
         form = ApplyForm()
 
-
-
     context = {'job' : job_detail , 'form' : form}
-    return render(request,'job/job_detail.html', context)
-
-
+    return render(request,'job_detail.html', context)
 
 @login_required
 def add_job(request):
     if request.method=='POST':
-        pass
+        #pass
         form = JobForm(request.POST , request.FILES) # request.FILES if theres any pic <form method="POST" enctype="multipart/form-data">
         if form.is_valid(): # to make sure the form is valid
             myform = form.save(commit=False) # save the form but not in the db because i need to add the person who added the job

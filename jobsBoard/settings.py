@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'jobsApp',
+
     'bootstrap4',
     'django_filters',
-    'jobsApp',
 
 ]
 
