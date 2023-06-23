@@ -3,10 +3,10 @@ from django.urls import path
 from . import views
 #from . import api 
 
-
+app_name = 'jobsApp '
 urlpatterns = [
     path('', views.job_list, name= "job_list"), # path('path_name/', include('app_name.urls'))
-    path('add', views.add_job, name='add_job'),
+    path('add-job', views.add_job, name='add-job'),
     path('job-detail/<str:slug>', views.job_detail, name='job_detail'),
     
     # API function based views

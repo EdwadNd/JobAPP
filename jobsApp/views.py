@@ -78,4 +78,4 @@ def add_job(request):
 
     else:
         form = JobForm()
-    return render(request,'job/add_job.html', {'form': form})
+    return render(request,'add_job.html', {'form': form})
