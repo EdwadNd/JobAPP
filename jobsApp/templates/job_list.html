@@ -1,9 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
 {% for job in jobs %}
 
-<p>{{ job.title}}</p>
-<p>{{ job.description}}</p>
-<p>{{ job.published_at}}</p>
-<br> <br>
-
+<p>Title: {{ job.title}}</p>
+<p>description: {{ job.description}}</p>
+<p>Published AT: {{ job.published_at}}</p>
+<br>
 
 {% endfor %}
